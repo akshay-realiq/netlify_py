@@ -40,12 +40,13 @@ class Sites(ApiBase):
         """
         return self._get_request(self._base_url + self._site.format(site_id=site_id))
 
-    def create_site(self, name=None):
+    def create_site(self, name=None, custom_domain=None):
         """
         Create a new site on netlify
         Args:
-            name (str): a unique name for site (optional)
+            name (str): a unique name for site (optional) must be unique across netlify
+            custom_domain (str): custom site domain (optional)
         Returns:
             newly created site details
         """
-        return self._post_request(data={"name": name}, url=self._base_url + self._sites)
+        return self._post_request(data={"name": name, "custom_domain": custom_domain}, url=self._base_url + self._sites)
